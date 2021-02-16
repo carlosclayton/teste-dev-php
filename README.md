@@ -24,7 +24,17 @@
 
 ### 2.  	Configuring environment using Docker
 Run the command bellow on Bash:
+
 ```
 $  sudo docker-compose up -d
 ```  
 
+After then, run the command bellow on Bash to access Workspace:
+```
+$  sudo docker exec -it cars-app bash
+```  
+
+Or, run the command bellow on Bash to access DB:
+```
+$  sudo docker exec -it cars-db bash
+```  
