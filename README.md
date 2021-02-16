@@ -38,3 +38,22 @@ Or, run the command bellow on Bash to access DB:
 ```
 $  sudo docker exec -it cars-db bash
 ```  
+
+### 3.  	Tests
+
+##### 3.1  	Test using Seed
+Run the command bellow on Bash:
+
+```
+$  php artisan migrate:refresh --seed
+```  
+
+
+
+##### 3.1  	Uni Test 
+Run the command bellow on Bash:
+
+```
+$  vendor/bin/phpunit --filter BrandTest --testdox
+$  vendor/bin/phpunit --filter CarTest --testdox
+```  

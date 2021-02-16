@@ -121,6 +121,10 @@
       <path value="$PROJECT_DIR$/vendor/beyondcode/laravel-dump-server" />
       <path value="$PROJECT_DIR$/vendor/prettus/l5-repository" />
       <path value="$PROJECT_DIR$/vendor/prettus/laravel-validation" />
+      <path value="$PROJECT_DIR$/vendor/league/fractal" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/annotations" />
+      <path value="$PROJECT_DIR$/vendor/dingo/blueprint" />
+      <path value="$PROJECT_DIR$/vendor/dingo/api" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.3" />
