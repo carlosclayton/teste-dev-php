@@ -164,3 +164,6 @@ docs/_book
 test/
 
 # End of https://www.toptal.com/developers/gitignore/api/linux,phpstorm,laravel,vue
+
+#Mysql data
+.docker/dbdata/*
