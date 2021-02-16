@@ -13,7 +13,7 @@ O código precisa rodar em macOS ou Ubuntu (preferencialmente como container Doc
 
 Altere o arquivo README explicando o que é preciso para rodar sua aplicação.
 
-O teste
+Os testes
 --------
 
 ### Back-End/PHP
