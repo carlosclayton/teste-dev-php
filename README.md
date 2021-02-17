@@ -1,5 +1,6 @@
 # Laravel 8 API Cars
 ![Screenshot](api-cars.png)
+
 ### 1.	Third party package
 
 > Laravel IDE Helper Generator: https://github.com/barryvdh/laravel-ide-helper
@@ -38,6 +39,7 @@ Or, run the command bellow on Bash to access DB:
 ```
 $  sudo docker exec -it cars-db bash
 ```  
+> API documentation: http://localhost:8000/api/documentation
 
 ### 3.  	Tests
 
@@ -75,18 +77,35 @@ $  vendor/bin/phpunit --filter CarControllerTest --testdox
 
 # SPA VUE 2
 ![Screenshot](spa-cars.png)
+
 ### 4.	Third party package
 
-### 5.  	Tests
+### 5.  	Build SPA
 
-##### 5.1  	Behavior test
+##### 5.1  	install dependencies 
+Run the command bellow on Bash:
+
+```
+$  npm install
+```  
+##### 5.2  	Run dev mode
+Run the command bellow on Bash:
+
+```
+$  npm run dev
+```  
+> SPA Car: http://localhost:8000/cars
+
+### 6.  	Tests
+
+##### 6.1  	Behavior test
 Run the command bellow on Bash:
 
 ```
 $  php artisan migrate:refresh --seed
 ```  
 
-##### 5.2  	Automation test
+##### 6.2  	Automation test
 Run the command bellow on Bash:
 
 ```
