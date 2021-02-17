@@ -79,6 +79,7 @@ $  vendor/bin/phpunit --filter CarControllerTest --testdox
 ![Screenshot](spa-cars.png)
 
 ### 4.	Third party package
+> Vue2 AdminLTE:  https://vuejsadmin.com/product/vue2-admin-lte
 
 ### 5.  	Build SPA
 
