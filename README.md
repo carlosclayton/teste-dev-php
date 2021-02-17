@@ -50,7 +50,7 @@ $  php artisan migrate:refresh --seed
 
 
 
-##### 3.1  	Unit Test 
+##### 3.1  	Unit Tests
 Run the command bellow on Bash:
 
 ```
@@ -59,10 +59,18 @@ $  vendor/bin/phpunit --filter CarTest --testdox
 ```  
 
 
-##### 3.2  	Integration Test
+##### 3.2  	Integration Tests
 Run the command bellow on Bash:
 
 ```
 $  vendor/bin/phpunit --filter BrandModelTest --testdox
 $  vendor/bin/phpunit --filter CarModelTest --testdox
+```  
+
+##### 3.3  	Http Tests
+Run the command bellow on Bash:
+
+```
+$  vendor/bin/phpunit --filter BrandControllerTest --testdox
+$  vendor/bin/phpunit --filter CarControllerTest --testdox
 ```  
