@@ -191,7 +191,7 @@ export default {
         }
     },
     mounted() {
-        console.log('User component monted')
+        console.log('Car component monted')
         document.body.className = 'skin-blue sidebar-mini';
         this.getAll();
     },
@@ -202,7 +202,7 @@ export default {
             CarService.all(this.currentPage, this.itemsPerPage, this.sortField, this.sort)
                 .then((response) => {
                     console.log('Cars: ', response)
-                    this.cars = response.body.data.data
+                    this.cars = response.body.data
                     this.currentPage = response.body.data.meta.pagination.current_page
                     this.totalItems = response.body.data.meta.pagination.total
                     this.itemsPerPage = response.body.data.meta.pagination.per_page
@@ -219,7 +219,7 @@ export default {
             CarService.all(this.currentPage, this.itemsPerPage, sortField, sort)
                 .then((response) => {
                     console.log('Cars: ', response)
-                    this.cars = response.body.data.data
+                    this.cars = response.body.data
                     this.currentPage = response.body.data.meta.pagination.current_page
                     this.totalItems = response.body.data.meta.pagination.total
                     this.itemsPerPage = response.body.data.meta.pagination.per_page
@@ -236,7 +236,7 @@ export default {
             CarService.all(this.currentPage, itemsPerPage, this.sortField, this.sort)
                 .then((response) => {
                     console.log('Cars: ', response)
-                    this.cars = response.body.data.data
+                    this.cars = response.body.data
                     this.currentPage = response.body.data.meta.pagination.current_page
                     this.totalItems = response.body.data.meta.pagination.total
                     this.itemsPerPage = response.body.data.meta.pagination.per_page
@@ -252,7 +252,7 @@ export default {
             CarService.all(currentPage, this.itemsPerPage, this.sortField, this.sort)
                 .then((response) => {
                     console.log('Cars: ', response)
-                    this.cars = response.body.data.data
+                    this.cars = response.body.data
                     this.currentPage = response.body.data.meta.pagination.current_page
                     this.totalItems = response.body.data.meta.pagination.total
                     this.itemsPerPage = response.body.data.meta.pagination.per_page

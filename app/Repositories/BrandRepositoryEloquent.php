@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Presenters\BrandPresenter;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use App\Repositories\BrandRepository;
@@ -44,5 +45,10 @@ class BrandRepositoryEloquent extends BaseRepository implements BrandRepository
     {
         $this->pushCriteria(app(RequestCriteria::class));
     }
-    
+
+    public function presenter()
+    {
+        return BrandPresenter::class;
+    }
+
 }

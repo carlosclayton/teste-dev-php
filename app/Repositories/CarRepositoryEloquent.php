@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Presenters\CarPresenter;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use App\Repositories\CarRepository;
@@ -44,5 +45,10 @@ class CarRepositoryEloquent extends BaseRepository implements CarRepository
     {
         $this->pushCriteria(app(RequestCriteria::class));
     }
-    
+
+    public function presenter()
+    {
+        return CarPresenter::class;
+    }
+
 }

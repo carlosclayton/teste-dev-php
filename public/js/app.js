@@ -2429,7 +2429,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    console.log('User component monted');
+    console.log('Car component monted');
     document.body.className = 'skin-blue sidebar-mini';
     this.getAll();
   },
@@ -2440,7 +2440,7 @@ __webpack_require__.r(__webpack_exports__);
       this.isLoading = true;
       _services_CarService__WEBPACK_IMPORTED_MODULE_9__.default.all(this.currentPage, this.itemsPerPage, this.sortField, this.sort).then(function (response) {
         console.log('Cars: ', response);
-        _this.cars = response.body.data.data;
+        _this.cars = response.body.data;
         _this.currentPage = response.body.data.meta.pagination.current_page;
         _this.totalItems = response.body.data.meta.pagination.total;
         _this.itemsPerPage = response.body.data.meta.pagination.per_page;
@@ -2456,7 +2456,7 @@ __webpack_require__.r(__webpack_exports__);
       console.log('New sort: ', sortField + ' ' + sort);
       _services_CarService__WEBPACK_IMPORTED_MODULE_9__.default.all(this.currentPage, this.itemsPerPage, sortField, sort).then(function (response) {
         console.log('Cars: ', response);
-        _this2.cars = response.body.data.data;
+        _this2.cars = response.body.data;
         _this2.currentPage = response.body.data.meta.pagination.current_page;
         _this2.totalItems = response.body.data.meta.pagination.total;
         _this2.itemsPerPage = response.body.data.meta.pagination.per_page;
@@ -2470,7 +2470,7 @@ __webpack_require__.r(__webpack_exports__);
       console.log("Updated list per page: ", itemsPerPage);
       _services_CarService__WEBPACK_IMPORTED_MODULE_9__.default.all(this.currentPage, itemsPerPage, this.sortField, this.sort).then(function (response) {
         console.log('Cars: ', response);
-        _this3.cars = response.body.data.data;
+        _this3.cars = response.body.data;
         _this3.currentPage = response.body.data.meta.pagination.current_page;
         _this3.totalItems = response.body.data.meta.pagination.total;
         _this3.itemsPerPage = response.body.data.meta.pagination.per_page;
@@ -2483,7 +2483,7 @@ __webpack_require__.r(__webpack_exports__);
       this.isLoading = true;
       _services_CarService__WEBPACK_IMPORTED_MODULE_9__.default.all(currentPage, this.itemsPerPage, this.sortField, this.sort).then(function (response) {
         console.log('Cars: ', response);
-        _this4.cars = response.body.data.data;
+        _this4.cars = response.body.data;
         _this4.currentPage = response.body.data.meta.pagination.current_page;
         _this4.totalItems = response.body.data.meta.pagination.total;
         _this4.itemsPerPage = response.body.data.meta.pagination.per_page;
@@ -2524,9 +2524,10 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
 /* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./routes */ "./resources/js/routes.js");
 /* harmony import */ var _components_App__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/App */ "./resources/js/components/App.vue");
+/* harmony import */ var vue_resource__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-resource */ "./node_modules/vue-resource/dist/vue-resource.esm.js");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -2539,6 +2540,9 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js").default;
+
+vue__WEBPACK_IMPORTED_MODULE_3__.default.use(vue_resource__WEBPACK_IMPORTED_MODULE_2__.default);
+vue__WEBPACK_IMPORTED_MODULE_3__.default.http.options.root = 'http://localhost:8000/api/';
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -2549,14 +2553,14 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js"
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-vue__WEBPACK_IMPORTED_MODULE_2__.default.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue").default);
+vue__WEBPACK_IMPORTED_MODULE_3__.default.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue").default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-new vue__WEBPACK_IMPORTED_MODULE_2__.default({
+new vue__WEBPACK_IMPORTED_MODULE_3__.default({
   http: {
     root: '/api'
   },
@@ -45968,6 +45972,1580 @@ function normalizeComponent (
 
 /***/ }),
 
+/***/ "./node_modules/vue-resource/dist/vue-resource.esm.js":
+/*!************************************************************!*\
+  !*** ./node_modules/vue-resource/dist/vue-resource.esm.js ***!
+  \************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   "Url": () => (/* binding */ Url),
+/* harmony export */   "Http": () => (/* binding */ Http),
+/* harmony export */   "Resource": () => (/* binding */ Resource)
+/* harmony export */ });
+/*!
+ * vue-resource v1.5.1
+ * https://github.com/pagekit/vue-resource
+ * Released under the MIT License.
+ */
+
+/**
+ * Promises/A+ polyfill v1.1.4 (https://github.com/bramstein/promis)
+ */
+
+var RESOLVED = 0;
+var REJECTED = 1;
+var PENDING = 2;
+
+function Promise$1(executor) {
+
+    this.state = PENDING;
+    this.value = undefined;
+    this.deferred = [];
+
+    var promise = this;
+
+    try {
+        executor(function (x) {
+            promise.resolve(x);
+        }, function (r) {
+            promise.reject(r);
+        });
+    } catch (e) {
+        promise.reject(e);
+    }
+}
+
+Promise$1.reject = function (r) {
+    return new Promise$1(function (resolve, reject) {
+        reject(r);
+    });
+};
+
+Promise$1.resolve = function (x) {
+    return new Promise$1(function (resolve, reject) {
+        resolve(x);
+    });
+};
+
+Promise$1.all = function all(iterable) {
+    return new Promise$1(function (resolve, reject) {
+        var count = 0, result = [];
+
+        if (iterable.length === 0) {
+            resolve(result);
+        }
+
+        function resolver(i) {
+            return function (x) {
+                result[i] = x;
+                count += 1;
+
+                if (count === iterable.length) {
+                    resolve(result);
+                }
+            };
+        }
+
+        for (var i = 0; i < iterable.length; i += 1) {
+            Promise$1.resolve(iterable[i]).then(resolver(i), reject);
+        }
+    });
+};
+
+Promise$1.race = function race(iterable) {
+    return new Promise$1(function (resolve, reject) {
+        for (var i = 0; i < iterable.length; i += 1) {
+            Promise$1.resolve(iterable[i]).then(resolve, reject);
+        }
+    });
+};
+
+var p = Promise$1.prototype;
+
+p.resolve = function resolve(x) {
+    var promise = this;
+
+    if (promise.state === PENDING) {
+        if (x === promise) {
+            throw new TypeError('Promise settled with itself.');
+        }
+
+        var called = false;
+
+        try {
+            var then = x && x['then'];
+
+            if (x !== null && typeof x === 'object' && typeof then === 'function') {
+                then.call(x, function (x) {
+                    if (!called) {
+                        promise.resolve(x);
+                    }
+                    called = true;
+
+                }, function (r) {
+                    if (!called) {
+                        promise.reject(r);
+                    }
+                    called = true;
+                });
+                return;
+            }
+        } catch (e) {
+            if (!called) {
+                promise.reject(e);
+            }
+            return;
+        }
+
+        promise.state = RESOLVED;
+        promise.value = x;
+        promise.notify();
+    }
+};
+
+p.reject = function reject(reason) {
+    var promise = this;
+
+    if (promise.state === PENDING) {
+        if (reason === promise) {
+            throw new TypeError('Promise settled with itself.');
+        }
+
+        promise.state = REJECTED;
+        promise.value = reason;
+        promise.notify();
+    }
+};
+
+p.notify = function notify() {
+    var promise = this;
+
+    nextTick(function () {
+        if (promise.state !== PENDING) {
+            while (promise.deferred.length) {
+                var deferred = promise.deferred.shift(),
+                    onResolved = deferred[0],
+                    onRejected = deferred[1],
+                    resolve = deferred[2],
+                    reject = deferred[3];
+
+                try {
+                    if (promise.state === RESOLVED) {
+                        if (typeof onResolved === 'function') {
+                            resolve(onResolved.call(undefined, promise.value));
+                        } else {
+                            resolve(promise.value);
+                        }
+                    } else if (promise.state === REJECTED) {
+                        if (typeof onRejected === 'function') {
+                            resolve(onRejected.call(undefined, promise.value));
+                        } else {
+                            reject(promise.value);
+                        }
+                    }
+                } catch (e) {
+                    reject(e);
+                }
+            }
+        }
+    });
+};
+
+p.then = function then(onResolved, onRejected) {
+    var promise = this;
+
+    return new Promise$1(function (resolve, reject) {
+        promise.deferred.push([onResolved, onRejected, resolve, reject]);
+        promise.notify();
+    });
+};
+
+p.catch = function (onRejected) {
+    return this.then(undefined, onRejected);
+};
+
+/**
+ * Promise adapter.
+ */
+
+if (typeof Promise === 'undefined') {
+    window.Promise = Promise$1;
+}
+
+function PromiseObj(executor, context) {
+
+    if (executor instanceof Promise) {
+        this.promise = executor;
+    } else {
+        this.promise = new Promise(executor.bind(context));
+    }
+
+    this.context = context;
+}
+
+PromiseObj.all = function (iterable, context) {
+    return new PromiseObj(Promise.all(iterable), context);
+};
+
+PromiseObj.resolve = function (value, context) {
+    return new PromiseObj(Promise.resolve(value), context);
+};
+
+PromiseObj.reject = function (reason, context) {
+    return new PromiseObj(Promise.reject(reason), context);
+};
+
+PromiseObj.race = function (iterable, context) {
+    return new PromiseObj(Promise.race(iterable), context);
+};
+
+var p$1 = PromiseObj.prototype;
+
+p$1.bind = function (context) {
+    this.context = context;
+    return this;
+};
+
+p$1.then = function (fulfilled, rejected) {
+
+    if (fulfilled && fulfilled.bind && this.context) {
+        fulfilled = fulfilled.bind(this.context);
+    }
+
+    if (rejected && rejected.bind && this.context) {
+        rejected = rejected.bind(this.context);
+    }
+
+    return new PromiseObj(this.promise.then(fulfilled, rejected), this.context);
+};
+
+p$1.catch = function (rejected) {
+
+    if (rejected && rejected.bind && this.context) {
+        rejected = rejected.bind(this.context);
+    }
+
+    return new PromiseObj(this.promise.catch(rejected), this.context);
+};
+
+p$1.finally = function (callback) {
+
+    return this.then(function (value) {
+        callback.call(this);
+        return value;
+    }, function (reason) {
+        callback.call(this);
+        return Promise.reject(reason);
+    }
+    );
+};
+
+/**
+ * Utility functions.
+ */
+
+var ref = {};
+var hasOwnProperty = ref.hasOwnProperty;
+var ref$1 = [];
+var slice = ref$1.slice;
+var debug = false, ntick;
+
+var inBrowser = typeof window !== 'undefined';
+
+function Util (ref) {
+    var config = ref.config;
+    var nextTick = ref.nextTick;
+
+    ntick = nextTick;
+    debug = config.debug || !config.silent;
+}
+
+function warn(msg) {
+    if (typeof console !== 'undefined' && debug) {
+        console.warn('[VueResource warn]: ' + msg);
+    }
+}
+
+function error(msg) {
+    if (typeof console !== 'undefined') {
+        console.error(msg);
+    }
+}
+
+function nextTick(cb, ctx) {
+    return ntick(cb, ctx);
+}
+
+function trim(str) {
+    return str ? str.replace(/^\s*|\s*$/g, '') : '';
+}
+
+function trimEnd(str, chars) {
+
+    if (str && chars === undefined) {
+        return str.replace(/\s+$/, '');
+    }
+
+    if (!str || !chars) {
+        return str;
+    }
+
+    return str.replace(new RegExp(("[" + chars + "]+$")), '');
+}
+
+function toLower(str) {
+    return str ? str.toLowerCase() : '';
+}
+
+function toUpper(str) {
+    return str ? str.toUpperCase() : '';
+}
+
+var isArray = Array.isArray;
+
+function isString(val) {
+    return typeof val === 'string';
+}
+
+function isFunction(val) {
+    return typeof val === 'function';
+}
+
+function isObject(obj) {
+    return obj !== null && typeof obj === 'object';
+}
+
+function isPlainObject(obj) {
+    return isObject(obj) && Object.getPrototypeOf(obj) == Object.prototype;
+}
+
+function isBlob(obj) {
+    return typeof Blob !== 'undefined' && obj instanceof Blob;
+}
+
+function isFormData(obj) {
+    return typeof FormData !== 'undefined' && obj instanceof FormData;
+}
+
+function when(value, fulfilled, rejected) {
+
+    var promise = PromiseObj.resolve(value);
+
+    if (arguments.length < 2) {
+        return promise;
+    }
+
+    return promise.then(fulfilled, rejected);
+}
+
+function options(fn, obj, opts) {
+
+    opts = opts || {};
+
+    if (isFunction(opts)) {
+        opts = opts.call(obj);
+    }
+
+    return merge(fn.bind({$vm: obj, $options: opts}), fn, {$options: opts});
+}
+
+function each(obj, iterator) {
+
+    var i, key;
+
+    if (isArray(obj)) {
+        for (i = 0; i < obj.length; i++) {
+            iterator.call(obj[i], obj[i], i);
+        }
+    } else if (isObject(obj)) {
+        for (key in obj) {
+            if (hasOwnProperty.call(obj, key)) {
+                iterator.call(obj[key], obj[key], key);
+            }
+        }
+    }
+
+    return obj;
+}
+
+var assign = Object.assign || _assign;
+
+function merge(target) {
+
+    var args = slice.call(arguments, 1);
+
+    args.forEach(function (source) {
+        _merge(target, source, true);
+    });
+
+    return target;
+}
+
+function defaults(target) {
+
+    var args = slice.call(arguments, 1);
+
+    args.forEach(function (source) {
+
+        for (var key in source) {
+            if (target[key] === undefined) {
+                target[key] = source[key];
+            }
+        }
+
+    });
+
+    return target;
+}
+
+function _assign(target) {
+
+    var args = slice.call(arguments, 1);
+
+    args.forEach(function (source) {
+        _merge(target, source);
+    });
+
+    return target;
+}
+
+function _merge(target, source, deep) {
+    for (var key in source) {
+        if (deep && (isPlainObject(source[key]) || isArray(source[key]))) {
+            if (isPlainObject(source[key]) && !isPlainObject(target[key])) {
+                target[key] = {};
+            }
+            if (isArray(source[key]) && !isArray(target[key])) {
+                target[key] = [];
+            }
+            _merge(target[key], source[key], deep);
+        } else if (source[key] !== undefined) {
+            target[key] = source[key];
+        }
+    }
+}
+
+/**
+ * Root Prefix Transform.
+ */
+
+function root (options$$1, next) {
+
+    var url = next(options$$1);
+
+    if (isString(options$$1.root) && !/^(https?:)?\//.test(url)) {
+        url = trimEnd(options$$1.root, '/') + '/' + url;
+    }
+
+    return url;
+}
+
+/**
+ * Query Parameter Transform.
+ */
+
+function query (options$$1, next) {
+
+    var urlParams = Object.keys(Url.options.params), query = {}, url = next(options$$1);
+
+    each(options$$1.params, function (value, key) {
+        if (urlParams.indexOf(key) === -1) {
+            query[key] = value;
+        }
+    });
+
+    query = Url.params(query);
+
+    if (query) {
+        url += (url.indexOf('?') == -1 ? '?' : '&') + query;
+    }
+
+    return url;
+}
+
+/**
+ * URL Template v2.0.6 (https://github.com/bramstein/url-template)
+ */
+
+function expand(url, params, variables) {
+
+    var tmpl = parse(url), expanded = tmpl.expand(params);
+
+    if (variables) {
+        variables.push.apply(variables, tmpl.vars);
+    }
+
+    return expanded;
+}
+
+function parse(template) {
+
+    var operators = ['+', '#', '.', '/', ';', '?', '&'], variables = [];
+
+    return {
+        vars: variables,
+        expand: function expand(context) {
+            return template.replace(/\{([^{}]+)\}|([^{}]+)/g, function (_, expression, literal) {
+                if (expression) {
+
+                    var operator = null, values = [];
+
+                    if (operators.indexOf(expression.charAt(0)) !== -1) {
+                        operator = expression.charAt(0);
+                        expression = expression.substr(1);
+                    }
+
+                    expression.split(/,/g).forEach(function (variable) {
+                        var tmp = /([^:*]*)(?::(\d+)|(\*))?/.exec(variable);
+                        values.push.apply(values, getValues(context, operator, tmp[1], tmp[2] || tmp[3]));
+                        variables.push(tmp[1]);
+                    });
+
+                    if (operator && operator !== '+') {
+
+                        var separator = ',';
+
+                        if (operator === '?') {
+                            separator = '&';
+                        } else if (operator !== '#') {
+                            separator = operator;
+                        }
+
+                        return (values.length !== 0 ? operator : '') + values.join(separator);
+                    } else {
+                        return values.join(',');
+                    }
+
+                } else {
+                    return encodeReserved(literal);
+                }
+            });
+        }
+    };
+}
+
+function getValues(context, operator, key, modifier) {
+
+    var value = context[key], result = [];
+
+    if (isDefined(value) && value !== '') {
+        if (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') {
+            value = value.toString();
+
+            if (modifier && modifier !== '*') {
+                value = value.substring(0, parseInt(modifier, 10));
+            }
+
+            result.push(encodeValue(operator, value, isKeyOperator(operator) ? key : null));
+        } else {
+            if (modifier === '*') {
+                if (Array.isArray(value)) {
+                    value.filter(isDefined).forEach(function (value) {
+                        result.push(encodeValue(operator, value, isKeyOperator(operator) ? key : null));
+                    });
+                } else {
+                    Object.keys(value).forEach(function (k) {
+                        if (isDefined(value[k])) {
+                            result.push(encodeValue(operator, value[k], k));
+                        }
+                    });
+                }
+            } else {
+                var tmp = [];
+
+                if (Array.isArray(value)) {
+                    value.filter(isDefined).forEach(function (value) {
+                        tmp.push(encodeValue(operator, value));
+                    });
+                } else {
+                    Object.keys(value).forEach(function (k) {
+                        if (isDefined(value[k])) {
+                            tmp.push(encodeURIComponent(k));
+                            tmp.push(encodeValue(operator, value[k].toString()));
+                        }
+                    });
+                }
+
+                if (isKeyOperator(operator)) {
+                    result.push(encodeURIComponent(key) + '=' + tmp.join(','));
+                } else if (tmp.length !== 0) {
+                    result.push(tmp.join(','));
+                }
+            }
+        }
+    } else {
+        if (operator === ';') {
+            result.push(encodeURIComponent(key));
+        } else if (value === '' && (operator === '&' || operator === '?')) {
+            result.push(encodeURIComponent(key) + '=');
+        } else if (value === '') {
+            result.push('');
+        }
+    }
+
+    return result;
+}
+
+function isDefined(value) {
+    return value !== undefined && value !== null;
+}
+
+function isKeyOperator(operator) {
+    return operator === ';' || operator === '&' || operator === '?';
+}
+
+function encodeValue(operator, value, key) {
+
+    value = (operator === '+' || operator === '#') ? encodeReserved(value) : encodeURIComponent(value);
+
+    if (key) {
+        return encodeURIComponent(key) + '=' + value;
+    } else {
+        return value;
+    }
+}
+
+function encodeReserved(str) {
+    return str.split(/(%[0-9A-Fa-f]{2})/g).map(function (part) {
+        if (!/%[0-9A-Fa-f]/.test(part)) {
+            part = encodeURI(part);
+        }
+        return part;
+    }).join('');
+}
+
+/**
+ * URL Template (RFC 6570) Transform.
+ */
+
+function template (options) {
+
+    var variables = [], url = expand(options.url, options.params, variables);
+
+    variables.forEach(function (key) {
+        delete options.params[key];
+    });
+
+    return url;
+}
+
+/**
+ * Service for URL templating.
+ */
+
+function Url(url, params) {
+
+    var self = this || {}, options$$1 = url, transform;
+
+    if (isString(url)) {
+        options$$1 = {url: url, params: params};
+    }
+
+    options$$1 = merge({}, Url.options, self.$options, options$$1);
+
+    Url.transforms.forEach(function (handler) {
+
+        if (isString(handler)) {
+            handler = Url.transform[handler];
+        }
+
+        if (isFunction(handler)) {
+            transform = factory(handler, transform, self.$vm);
+        }
+
+    });
+
+    return transform(options$$1);
+}
+
+/**
+ * Url options.
+ */
+
+Url.options = {
+    url: '',
+    root: null,
+    params: {}
+};
+
+/**
+ * Url transforms.
+ */
+
+Url.transform = {template: template, query: query, root: root};
+Url.transforms = ['template', 'query', 'root'];
+
+/**
+ * Encodes a Url parameter string.
+ *
+ * @param {Object} obj
+ */
+
+Url.params = function (obj) {
+
+    var params = [], escape = encodeURIComponent;
+
+    params.add = function (key, value) {
+
+        if (isFunction(value)) {
+            value = value();
+        }
+
+        if (value === null) {
+            value = '';
+        }
+
+        this.push(escape(key) + '=' + escape(value));
+    };
+
+    serialize(params, obj);
+
+    return params.join('&').replace(/%20/g, '+');
+};
+
+/**
+ * Parse a URL and return its components.
+ *
+ * @param {String} url
+ */
+
+Url.parse = function (url) {
+
+    var el = document.createElement('a');
+
+    if (document.documentMode) {
+        el.href = url;
+        url = el.href;
+    }
+
+    el.href = url;
+
+    return {
+        href: el.href,
+        protocol: el.protocol ? el.protocol.replace(/:$/, '') : '',
+        port: el.port,
+        host: el.host,
+        hostname: el.hostname,
+        pathname: el.pathname.charAt(0) === '/' ? el.pathname : '/' + el.pathname,
+        search: el.search ? el.search.replace(/^\?/, '') : '',
+        hash: el.hash ? el.hash.replace(/^#/, '') : ''
+    };
+};
+
+function factory(handler, next, vm) {
+    return function (options$$1) {
+        return handler.call(vm, options$$1, next);
+    };
+}
+
+function serialize(params, obj, scope) {
+
+    var array = isArray(obj), plain = isPlainObject(obj), hash;
+
+    each(obj, function (value, key) {
+
+        hash = isObject(value) || isArray(value);
+
+        if (scope) {
+            key = scope + '[' + (plain || hash ? key : '') + ']';
+        }
+
+        if (!scope && array) {
+            params.add(value.name, value.value);
+        } else if (hash) {
+            serialize(params, value, key);
+        } else {
+            params.add(key, value);
+        }
+    });
+}
+
+/**
+ * XDomain client (Internet Explorer).
+ */
+
+function xdrClient (request) {
+    return new PromiseObj(function (resolve) {
+
+        var xdr = new XDomainRequest(), handler = function (ref) {
+                var type = ref.type;
+
+
+                var status = 0;
+
+                if (type === 'load') {
+                    status = 200;
+                } else if (type === 'error') {
+                    status = 500;
+                }
+
+                resolve(request.respondWith(xdr.responseText, {status: status}));
+            };
+
+        request.abort = function () { return xdr.abort(); };
+
+        xdr.open(request.method, request.getUrl());
+
+        if (request.timeout) {
+            xdr.timeout = request.timeout;
+        }
+
+        xdr.onload = handler;
+        xdr.onabort = handler;
+        xdr.onerror = handler;
+        xdr.ontimeout = handler;
+        xdr.onprogress = function () {};
+        xdr.send(request.getBody());
+    });
+}
+
+/**
+ * CORS Interceptor.
+ */
+
+var SUPPORTS_CORS = inBrowser && 'withCredentials' in new XMLHttpRequest();
+
+function cors (request) {
+
+    if (inBrowser) {
+
+        var orgUrl = Url.parse(location.href);
+        var reqUrl = Url.parse(request.getUrl());
+
+        if (reqUrl.protocol !== orgUrl.protocol || reqUrl.host !== orgUrl.host) {
+
+            request.crossOrigin = true;
+            request.emulateHTTP = false;
+
+            if (!SUPPORTS_CORS) {
+                request.client = xdrClient;
+            }
+        }
+    }
+
+}
+
+/**
+ * Form data Interceptor.
+ */
+
+function form (request) {
+
+    if (isFormData(request.body)) {
+        request.headers.delete('Content-Type');
+    } else if (isObject(request.body) && request.emulateJSON) {
+        request.body = Url.params(request.body);
+        request.headers.set('Content-Type', 'application/x-www-form-urlencoded');
+    }
+
+}
+
+/**
+ * JSON Interceptor.
+ */
+
+function json (request) {
+
+    var type = request.headers.get('Content-Type') || '';
+
+    if (isObject(request.body) && type.indexOf('application/json') === 0) {
+        request.body = JSON.stringify(request.body);
+    }
+
+    return function (response) {
+
+        return response.bodyText ? when(response.text(), function (text) {
+
+            var type = response.headers.get('Content-Type') || '';
+
+            if (type.indexOf('application/json') === 0 || isJson(text)) {
+
+                try {
+                    response.body = JSON.parse(text);
+                } catch (e) {
+                    response.body = null;
+                }
+
+            } else {
+                response.body = text;
+            }
+
+            return response;
+
+        }) : response;
+
+    };
+}
+
+function isJson(str) {
+
+    var start = str.match(/^\s*(\[|\{)/);
+    var end = {'[': /]\s*$/, '{': /}\s*$/};
+
+    return start && end[start[1]].test(str);
+}
+
+/**
+ * JSONP client (Browser).
+ */
+
+function jsonpClient (request) {
+    return new PromiseObj(function (resolve) {
+
+        var name = request.jsonp || 'callback', callback = request.jsonpCallback || '_jsonp' + Math.random().toString(36).substr(2), body = null, handler, script;
+
+        handler = function (ref) {
+            var type = ref.type;
+
+
+            var status = 0;
+
+            if (type === 'load' && body !== null) {
+                status = 200;
+            } else if (type === 'error') {
+                status = 500;
+            }
+
+            if (status && window[callback]) {
+                delete window[callback];
+                document.body.removeChild(script);
+            }
+
+            resolve(request.respondWith(body, {status: status}));
+        };
+
+        window[callback] = function (result) {
+            body = JSON.stringify(result);
+        };
+
+        request.abort = function () {
+            handler({type: 'abort'});
+        };
+
+        request.params[name] = callback;
+
+        if (request.timeout) {
+            setTimeout(request.abort, request.timeout);
+        }
+
+        script = document.createElement('script');
+        script.src = request.getUrl();
+        script.type = 'text/javascript';
+        script.async = true;
+        script.onload = handler;
+        script.onerror = handler;
+
+        document.body.appendChild(script);
+    });
+}
+
+/**
+ * JSONP Interceptor.
+ */
+
+function jsonp (request) {
+
+    if (request.method == 'JSONP') {
+        request.client = jsonpClient;
+    }
+
+}
+
+/**
+ * Before Interceptor.
+ */
+
+function before (request) {
+
+    if (isFunction(request.before)) {
+        request.before.call(this, request);
+    }
+
+}
+
+/**
+ * HTTP method override Interceptor.
+ */
+
+function method (request) {
+
+    if (request.emulateHTTP && /^(PUT|PATCH|DELETE)$/i.test(request.method)) {
+        request.headers.set('X-HTTP-Method-Override', request.method);
+        request.method = 'POST';
+    }
+
+}
+
+/**
+ * Header Interceptor.
+ */
+
+function header (request) {
+
+    var headers = assign({}, Http.headers.common,
+        !request.crossOrigin ? Http.headers.custom : {},
+        Http.headers[toLower(request.method)]
+    );
+
+    each(headers, function (value, name) {
+        if (!request.headers.has(name)) {
+            request.headers.set(name, value);
+        }
+    });
+
+}
+
+/**
+ * XMLHttp client (Browser).
+ */
+
+function xhrClient (request) {
+    return new PromiseObj(function (resolve) {
+
+        var xhr = new XMLHttpRequest(), handler = function (event) {
+
+                var response = request.respondWith(
+                'response' in xhr ? xhr.response : xhr.responseText, {
+                    status: xhr.status === 1223 ? 204 : xhr.status, // IE9 status bug
+                    statusText: xhr.status === 1223 ? 'No Content' : trim(xhr.statusText)
+                });
+
+                each(trim(xhr.getAllResponseHeaders()).split('\n'), function (row) {
+                    response.headers.append(row.slice(0, row.indexOf(':')), row.slice(row.indexOf(':') + 1));
+                });
+
+                resolve(response);
+            };
+
+        request.abort = function () { return xhr.abort(); };
+
+        xhr.open(request.method, request.getUrl(), true);
+
+        if (request.timeout) {
+            xhr.timeout = request.timeout;
+        }
+
+        if (request.responseType && 'responseType' in xhr) {
+            xhr.responseType = request.responseType;
+        }
+
+        if (request.withCredentials || request.credentials) {
+            xhr.withCredentials = true;
+        }
+
+        if (!request.crossOrigin) {
+            request.headers.set('X-Requested-With', 'XMLHttpRequest');
+        }
+
+        // deprecated use downloadProgress
+        if (isFunction(request.progress) && request.method === 'GET') {
+            xhr.addEventListener('progress', request.progress);
+        }
+
+        if (isFunction(request.downloadProgress)) {
+            xhr.addEventListener('progress', request.downloadProgress);
+        }
+
+        // deprecated use uploadProgress
+        if (isFunction(request.progress) && /^(POST|PUT)$/i.test(request.method)) {
+            xhr.upload.addEventListener('progress', request.progress);
+        }
+
+        if (isFunction(request.uploadProgress) && xhr.upload) {
+            xhr.upload.addEventListener('progress', request.uploadProgress);
+        }
+
+        request.headers.forEach(function (value, name) {
+            xhr.setRequestHeader(name, value);
+        });
+
+        xhr.onload = handler;
+        xhr.onabort = handler;
+        xhr.onerror = handler;
+        xhr.ontimeout = handler;
+        xhr.send(request.getBody());
+    });
+}
+
+/**
+ * Http client (Node).
+ */
+
+function nodeClient (request) {
+
+    var client = __webpack_require__(/*! got */ "?01a5");
+
+    return new PromiseObj(function (resolve) {
+
+        var url = request.getUrl();
+        var body = request.getBody();
+        var method = request.method;
+        var headers = {}, handler;
+
+        request.headers.forEach(function (value, name) {
+            headers[name] = value;
+        });
+
+        client(url, {body: body, method: method, headers: headers}).then(handler = function (resp) {
+
+            var response = request.respondWith(resp.body, {
+                status: resp.statusCode,
+                statusText: trim(resp.statusMessage)
+            });
+
+            each(resp.headers, function (value, name) {
+                response.headers.set(name, value);
+            });
+
+            resolve(response);
+
+        }, function (error$$1) { return handler(error$$1.response); });
+    });
+}
+
+/**
+ * Base client.
+ */
+
+function Client (context) {
+
+    var reqHandlers = [sendRequest], resHandlers = [];
+
+    if (!isObject(context)) {
+        context = null;
+    }
+
+    function Client(request) {
+        while (reqHandlers.length) {
+
+            var handler = reqHandlers.pop();
+
+            if (isFunction(handler)) {
+
+                var response = (void 0), next = (void 0);
+
+                response = handler.call(context, request, function (val) { return next = val; }) || next;
+
+                if (isObject(response)) {
+                    return new PromiseObj(function (resolve, reject) {
+
+                        resHandlers.forEach(function (handler) {
+                            response = when(response, function (response) {
+                                return handler.call(context, response) || response;
+                            }, reject);
+                        });
+
+                        when(response, resolve, reject);
+
+                    }, context);
+                }
+
+                if (isFunction(response)) {
+                    resHandlers.unshift(response);
+                }
+
+            } else {
+                warn(("Invalid interceptor of type " + (typeof handler) + ", must be a function"));
+            }
+        }
+    }
+
+    Client.use = function (handler) {
+        reqHandlers.push(handler);
+    };
+
+    return Client;
+}
+
+function sendRequest(request) {
+
+    var client = request.client || (inBrowser ? xhrClient : nodeClient);
+
+    return client(request);
+}
+
+/**
+ * HTTP Headers.
+ */
+
+var Headers = function Headers(headers) {
+    var this$1 = this;
+
+
+    this.map = {};
+
+    each(headers, function (value, name) { return this$1.append(name, value); });
+};
+
+Headers.prototype.has = function has (name) {
+    return getName(this.map, name) !== null;
+};
+
+Headers.prototype.get = function get (name) {
+
+    var list = this.map[getName(this.map, name)];
+
+    return list ? list.join() : null;
+};
+
+Headers.prototype.getAll = function getAll (name) {
+    return this.map[getName(this.map, name)] || [];
+};
+
+Headers.prototype.set = function set (name, value) {
+    this.map[normalizeName(getName(this.map, name) || name)] = [trim(value)];
+};
+
+Headers.prototype.append = function append (name, value) {
+
+    var list = this.map[getName(this.map, name)];
+
+    if (list) {
+        list.push(trim(value));
+    } else {
+        this.set(name, value);
+    }
+};
+
+Headers.prototype.delete = function delete$1 (name) {
+    delete this.map[getName(this.map, name)];
+};
+
+Headers.prototype.deleteAll = function deleteAll () {
+    this.map = {};
+};
+
+Headers.prototype.forEach = function forEach (callback, thisArg) {
+        var this$1 = this;
+
+    each(this.map, function (list, name) {
+        each(list, function (value) { return callback.call(thisArg, value, name, this$1); });
+    });
+};
+
+function getName(map, name) {
+    return Object.keys(map).reduce(function (prev, curr) {
+        return toLower(name) === toLower(curr) ? curr : prev;
+    }, null);
+}
+
+function normalizeName(name) {
+
+    if (/[^a-z0-9\-#$%&'*+.^_`|~]/i.test(name)) {
+        throw new TypeError('Invalid character in header field name');
+    }
+
+    return trim(name);
+}
+
+/**
+ * HTTP Response.
+ */
+
+var Response = function Response(body, ref) {
+    var url = ref.url;
+    var headers = ref.headers;
+    var status = ref.status;
+    var statusText = ref.statusText;
+
+
+    this.url = url;
+    this.ok = status >= 200 && status < 300;
+    this.status = status || 0;
+    this.statusText = statusText || '';
+    this.headers = new Headers(headers);
+    this.body = body;
+
+    if (isString(body)) {
+
+        this.bodyText = body;
+
+    } else if (isBlob(body)) {
+
+        this.bodyBlob = body;
+
+        if (isBlobText(body)) {
+            this.bodyText = blobText(body);
+        }
+    }
+};
+
+Response.prototype.blob = function blob () {
+    return when(this.bodyBlob);
+};
+
+Response.prototype.text = function text () {
+    return when(this.bodyText);
+};
+
+Response.prototype.json = function json () {
+    return when(this.text(), function (text) { return JSON.parse(text); });
+};
+
+Object.defineProperty(Response.prototype, 'data', {
+
+    get: function get() {
+        return this.body;
+    },
+
+    set: function set(body) {
+        this.body = body;
+    }
+
+});
+
+function blobText(body) {
+    return new PromiseObj(function (resolve) {
+
+        var reader = new FileReader();
+
+        reader.readAsText(body);
+        reader.onload = function () {
+            resolve(reader.result);
+        };
+
+    });
+}
+
+function isBlobText(body) {
+    return body.type.indexOf('text') === 0 || body.type.indexOf('json') !== -1;
+}
+
+/**
+ * HTTP Request.
+ */
+
+var Request = function Request(options$$1) {
+
+    this.body = null;
+    this.params = {};
+
+    assign(this, options$$1, {
+        method: toUpper(options$$1.method || 'GET')
+    });
+
+    if (!(this.headers instanceof Headers)) {
+        this.headers = new Headers(this.headers);
+    }
+};
+
+Request.prototype.getUrl = function getUrl () {
+    return Url(this);
+};
+
+Request.prototype.getBody = function getBody () {
+    return this.body;
+};
+
+Request.prototype.respondWith = function respondWith (body, options$$1) {
+    return new Response(body, assign(options$$1 || {}, {url: this.getUrl()}));
+};
+
+/**
+ * Service for sending network requests.
+ */
+
+var COMMON_HEADERS = {'Accept': 'application/json, text/plain, */*'};
+var JSON_CONTENT_TYPE = {'Content-Type': 'application/json;charset=utf-8'};
+
+function Http(options$$1) {
+
+    var self = this || {}, client = Client(self.$vm);
+
+    defaults(options$$1 || {}, self.$options, Http.options);
+
+    Http.interceptors.forEach(function (handler) {
+
+        if (isString(handler)) {
+            handler = Http.interceptor[handler];
+        }
+
+        if (isFunction(handler)) {
+            client.use(handler);
+        }
+
+    });
+
+    return client(new Request(options$$1)).then(function (response) {
+
+        return response.ok ? response : PromiseObj.reject(response);
+
+    }, function (response) {
+
+        if (response instanceof Error) {
+            error(response);
+        }
+
+        return PromiseObj.reject(response);
+    });
+}
+
+Http.options = {};
+
+Http.headers = {
+    put: JSON_CONTENT_TYPE,
+    post: JSON_CONTENT_TYPE,
+    patch: JSON_CONTENT_TYPE,
+    delete: JSON_CONTENT_TYPE,
+    common: COMMON_HEADERS,
+    custom: {}
+};
+
+Http.interceptor = {before: before, method: method, jsonp: jsonp, json: json, form: form, header: header, cors: cors};
+Http.interceptors = ['before', 'method', 'jsonp', 'json', 'form', 'header', 'cors'];
+
+['get', 'delete', 'head', 'jsonp'].forEach(function (method$$1) {
+
+    Http[method$$1] = function (url, options$$1) {
+        return this(assign(options$$1 || {}, {url: url, method: method$$1}));
+    };
+
+});
+
+['post', 'put', 'patch'].forEach(function (method$$1) {
+
+    Http[method$$1] = function (url, body, options$$1) {
+        return this(assign(options$$1 || {}, {url: url, method: method$$1, body: body}));
+    };
+
+});
+
+/**
+ * Service for interacting with RESTful services.
+ */
+
+function Resource(url, params, actions, options$$1) {
+
+    var self = this || {}, resource = {};
+
+    actions = assign({},
+        Resource.actions,
+        actions
+    );
+
+    each(actions, function (action, name) {
+
+        action = merge({url: url, params: assign({}, params)}, options$$1, action);
+
+        resource[name] = function () {
+            return (self.$http || Http)(opts(action, arguments));
+        };
+    });
+
+    return resource;
+}
+
+function opts(action, args) {
+
+    var options$$1 = assign({}, action), params = {}, body;
+
+    switch (args.length) {
+
+        case 2:
+
+            params = args[0];
+            body = args[1];
+
+            break;
+
+        case 1:
+
+            if (/^(POST|PUT|PATCH)$/i.test(options$$1.method)) {
+                body = args[0];
+            } else {
+                params = args[0];
+            }
+
+            break;
+
+        case 0:
+
+            break;
+
+        default:
+
+            throw 'Expected up to 2 arguments [params, body], got ' + args.length + ' arguments';
+    }
+
+    options$$1.body = body;
+    options$$1.params = assign({}, options$$1.params, params);
+
+    return options$$1;
+}
+
+Resource.actions = {
+
+    get: {method: 'GET'},
+    save: {method: 'POST'},
+    query: {method: 'GET'},
+    update: {method: 'PUT'},
+    remove: {method: 'DELETE'},
+    delete: {method: 'DELETE'}
+
+};
+
+/**
+ * Install plugin.
+ */
+
+function plugin(Vue) {
+
+    if (plugin.installed) {
+        return;
+    }
+
+    Util(Vue);
+
+    Vue.url = Url;
+    Vue.http = Http;
+    Vue.resource = Resource;
+    Vue.Promise = PromiseObj;
+
+    Object.defineProperties(Vue.prototype, {
+
+        $url: {
+            get: function get() {
+                return options(Vue.url, this, this.$options.url);
+            }
+        },
+
+        $http: {
+            get: function get() {
+                return options(Vue.http, this, this.$options.http);
+            }
+        },
+
+        $resource: {
+            get: function get() {
+                return Vue.resource.bind(this);
+            }
+        },
+
+        $promise: {
+            get: function get() {
+                var this$1 = this;
+
+                return function (executor) { return new Vue.Promise(executor, this$1); };
+            }
+        }
+
+    });
+}
+
+if (typeof window !== 'undefined' && window.Vue) {
+    window.Vue.use(plugin);
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (plugin);
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-router/dist/vue-router.esm.js":
 /*!********************************************************!*\
   !*** ./node_modules/vue-router/dist/vue-router.esm.js ***!
@@ -61811,6 +63389,16 @@ Vue.compile = compileToFunctions;
 /*! Vue2-Simplert v.0.8.0 */
 !function(n,e){ true?module.exports=e():0}("undefined"!=typeof self?self:this,function(){return function(n){function e(o){if(t[o])return t[o].exports;var s=t[o]={i:o,l:!1,exports:{}};return n[o].call(s.exports,s,s.exports,e),s.l=!0,s.exports}var t={};return e.m=n,e.c=t,e.d=function(n,t,o){e.o(n,t)||Object.defineProperty(n,t,{configurable:!1,enumerable:!0,get:o})},e.n=function(n){var t=n&&n.__esModule?function(){return n.default}:function(){return n};return e.d(t,"a",t),t},e.o=function(n,e){return Object.prototype.hasOwnProperty.call(n,e)},e.p="/dist",e(e.s=4)}([function(n,e,t){"use strict";function o(n,e){var t=n[1]||"",o=n[3];if(!o)return t;if(e&&"function"==typeof btoa){var i=s(o);return[t].concat(o.sources.map(function(n){return"/*# sourceURL="+o.sourceRoot+n+" */"})).concat([i]).join("\n")}return[t].join("\n")}function s(n){return"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,"+btoa(unescape(encodeURIComponent(JSON.stringify(n))))+" */"}n.exports=function(n){var e=[];return e.toString=function(){return this.map(function(e){var t=o(e,n);return e[2]?"@media "+e[2]+"{"+t+"}":t}).join("")},e.i=function(n,t){"string"==typeof n&&(n=[[null,n,""]]);for(var o={},s=0;s<this.length;s++){var i=this[s][0];"number"==typeof i&&(o[i]=!0)}for(s=0;s<n.length;s++){var r=n[s];"number"==typeof r[0]&&o[r[0]]||(t&&!r[2]?r[2]=t:t&&(r[2]="("+r[2]+") and ("+t+")"),e.push(r))}},e}},function(n,e,t){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var o=t(2),s=function(n){return n&&n.__esModule?n:{default:n}}(o);e.default={name:"Simplert",props:{useRadius:{type:Boolean,default:!0},useIcon:{type:Boolean,default:!0},enableLog:{type:Boolean,default:!1}},data:function(){return{eventBus:null,showSimplert:!1,title:"",message:"",type:s.default.defaultCons.DEFAULT_TYPE,customClass:"",customIconUrl:"",onOpen:null,customCloseBtnText:s.default.defaultCons.DEFAULT_BTN_CLOSE_TEXT,customCloseBtnClass:"",onClose:null,useConfirmBtn:!1,customConfirmBtnText:s.default.defaultCons.DEFAULT_BTN_CONFIRM_TEXT,customConfirmBtnClass:"",onConfirm:null,disableOverlayClick:!1,hideAllButton:!1,showXclose:!1}},computed:{classSimplert:function(){var n=this.customClass;return this.showSimplert&&(n=this.customClass+" simplert--shown"),n},classContent:function(){var n="";return this.useRadius&&(n="simplert__content--radius"),n},classBtnClose:function(){var n="simplert__close";return this.useRadius&&(n="simplert__close simplert__close--radius"),this.customCloseBtnClass&&(n=this.customCloseBtnClass),n},classBtnConfirm:function(){var n="simplert__confirm";return this.useRadius&&(n="simplert__confirm simplert__confirm--radius"),this.customConfirmBtnClass&&(n=this.customConfirmBtnClass),n}},methods:{justCloseSimplert:function(){this.showSimplert=!1},closeOverlay:function(n){var e=this;n.target.className.indexOf("simplert--shown")>0&&!e.disableOverlayClick&&this.justCloseSimplert()},whenConfirm:function(n){var e=this;n.preventDefault(),this.justCloseSimplert(),null!==e.onConfirm&&e.onConfirm()},closeSimplert:function(n){var e=this;n.preventDefault(),this.justCloseSimplert(),null!==e.onClose&&e.onClose()},openSimplert:function(n){var e=this;void 0!==n&&(e.showSimplert=!0,e.title=n.title,void 0!==n.message?e.message=n.message:e.message="",void 0!==n.type?e.type=n.type:e.type=s.default.config.type,void 0!==n.customClass?e.customClass=n.customClass:e.customClass="",void 0!==n.customIconUrl&&""!==n.customIconUrl?(e.customIconUrl=n.customIconUrl,e.type=s.default.defaultCons.INVALID_TYPE):e.customIconUrl="",void 0!==n.customCloseBtnText&&""!==n.customCloseBtnText?e.customCloseBtnText=n.customCloseBtnText:e.customCloseBtnText=s.default.defaultCons.DEFAULT_BTN_CLOSE_TEXT,void 0!==n.customCloseBtnClass?e.customCloseBtnClass=n.customCloseBtnClass:e.customCloseBtnClass="",void 0!==n.onClose&&null!==n.onClose?e.onClose=n.onClose:e.onClose=null,void 0!==n.useConfirmBtn?e.useConfirmBtn=n.useConfirmBtn:e.useConfirmBtn=!1,void 0!==n.customConfirmBtnText&&""!==n.customConfirmBtnText?e.customConfirmBtnText=n.customConfirmBtnText:e.customConfirmBtnText=s.default.defaultCons.DEFAULT_BTN_CONFIRM_TEXT,void 0!==n.customConfirmBtnClass?e.customConfirmBtnClass=n.customConfirmBtnClass:e.customConfirmBtnClass="",void 0!==n.onConfirm&&null!==n.onConfirm?e.onConfirm=n.onConfirm:e.onConfirm=null,void 0!==n.disableOverlayClick?e.disableOverlayClick=n.disableOverlayClick:e.disableOverlayClick=!1,void 0!==n.hideAllButton?e.hideAllButton=n.hideAllButton:e.hideAllButton=!1,void 0!==n.showXclose?e.showXclose=n.showXclose:e.showXclose=!1,void 0!==n.onOpen?e.onOpen=n.onOpen:e.onOpen=null,null!==e.onOpen&&e.onOpen()),this.enableLog&&console.log(e)}}}},function(n,e,t){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var o={DEFAULT_TYPE:"info",DEFAULT_BTN_CLOSE_TEXT:"Close",DEFAULT_BTN_CONFIRM_TEXT:"Confirm",INVALID_TYPE:"INVALID_TYPE"};e.default={name:"simplertConfig",config:{show:!1,showSimplert:!1,title:"",message:"",type:o.DEFAULT_TYPE,customClass:"",customIconUrl:"",onOpen:null,customCloseBtnText:o.DEFAULT_BTN_CLOSE_TEXT,customCloseBtnClass:"",onClose:null,useConfirmBtn:!1,customConfirmBtnText:o.DEFAULT_BTN_CONFIRM_TEXT,customConfirmBtnClass:"",onConfirm:null,disableOverlayClick:!1,hideAllButton:!1,showXclose:!1},defaultCons:o}},function(n,e,t){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var o=t(1),s=function(n){return n&&n.__esModule?n:{default:n}}(o);e.default={name:"Simplert",mixins:[s.default]}},function(n,e,t){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var o=t(5),s=function(n){return n&&n.__esModule?n:{default:n}}(o),i={install:function(n){n.component(s.default.name,s.default)}};s.default.install=i.install,e.default=s.default},function(n,e,t){"use strict";function o(n){t(6)}Object.defineProperty(e,"__esModule",{value:!0});var s=t(3),i=t.n(s);for(var r in s)"default"!==r&&function(n){t.d(e,n,function(){return s[n]})}(r);var l=t(11),a=t(10),c=o,u=a(i.a,l.a,!1,c,null,null);e.default=u.exports},function(n,e,t){var o=t(7);"string"==typeof o&&(o=[[n.i,o,""]]),o.locals&&(n.exports=o.locals);t(8)("b60b2b4a",o,!0)},function(n,e,t){e=n.exports=t(0)(!1),e.push([n.i,"\n.simplert {\n  box-sizing: border-box;\n  font-size: 14px;\n  line-height: 1.15;\n}\n.simplert *, .simplert *:before, .simplert *:after {\n  box-sizing: inherit;\n}\n.simplert {\n  position: fixed;\n  z-index: 999;\n  top: 0;\n  left: 0;\n  display: none;\n  overflow: auto;\n  width: 100%;\n  height: 100%;\n  text-align: center;\n  background-color: black;\n  background-color: rgba(0, 0, 0, 0.4);\n}\n.simplert--shown {\n  display: flex;\n  align-items: center;\n}\n.simplert--shown .simplert__content {\n  animation-name: zoomIn;\n  animation-duration: .3s;\n  animation-fill-mode: both;\n}\n.simplert__x{\n  position: absolute;\n  right: 15px;\n  top: 15px;\n  cursor: pointer;\n  color: #b3aaaa;\n  font-weight: bold;\n  font-size: 11px;\n}\n.simplert__header {\n  padding: 2em 0;\n}\n.simplert__title {\n  font-size: 30px;\n  display: block;\n}\n.simplert__content {\n  position: relative;\n  width: 90%;\n  max-width: 400px;\n  margin: 0 auto;\n  padding: 0 20px;\n  background-color: #fff;\n  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);\n}\n@media only screen and (min-width: 768px) {\n.simplert__content {\n    width: 30%;\n}\n}\n.simplert__content--radius {\n  -webkit-border-radius: 0.3em;\n  -moz-border-radius: 0.3em;\n  border-radius: 0.3em;\n}\n.simplert__body {\n  padding-bottom: 1em;\n}\n.simplert__icon {\n  position: relative;\n  width: 80px;\n  height: 80px;\n  margin: 10px auto;\n  -webkit-border-radius: 50%;\n  -moz-border-radius: 50%;\n  border-radius: 50%;\n}\n.simplert__icon--info {\n  border: 4px solid #c9dae1;\n}\n.simplert__icon--success {\n  border: 4px solid #a5dc86;\n}\n.simplert__icon--warning {\n  border: 4px solid #f8bb86;\n}\n.simplert__icon--error {\n  border: 4px solid #f27474;\n}\n.simplert__icon img {\n  width: 80px;\n  height: 80px;\n}\n.simplert__line {\n  position: absolute;\n  z-index: 2;\n  display: block;\n  height: 5px;\n  border-radius: 2px;\n}\n.simplert__line--info {\n  position: absolute;\n  top: 19px;\n  left: 50%;\n  width: 7px;\n  height: 7px;\n  margin-left: -3px;\n  border-radius: 50%;\n  background-color: #c9dae1;\n}\n.simplert__line--info-2 {\n  position: absolute;\n  bottom: 15px;\n  left: 50%;\n  width: 5px;\n  height: 29px;\n  margin-left: -2px;\n  border-radius: 2px;\n  background-color: #c9dae1;\n}\n.simplert__line--success {\n  top: 44px;\n  left: 6px;\n  width: 25px;\n  -webkit-transform: rotate(45deg);\n  transform: rotate(45deg);\n  background-color: #a5dc86;\n}\n.simplert__line--success-2 {\n  top: 38px;\n  right: 6px;\n  width: 47px;\n  -webkit-transform: rotate(-45deg);\n  transform: rotate(-45deg);\n  background-color: #a5dc86;\n}\n.simplert__line--warning {\n  position: absolute;\n  top: 10px;\n  left: 50%;\n  width: 5px;\n  height: 35px;\n  margin-left: -2px;\n  -webkit-border-radius: 2px;\n  border-radius: 2px;\n  background-color: #f8bb86;\n}\n.simplert__line--warning-2 {\n  position: absolute;\n  bottom: 10px;\n  left: 50%;\n  width: 7px;\n  height: 7px;\n  margin-left: -3px;\n  -webkit-border-radius: 50%;\n  border-radius: 50%;\n  background-color: #f8bb86;\n}\n.simplert__line--error {\n  top: 35px;\n  left: 13px;\n  width: 47px;\n  -webkit-transform: rotate(45deg);\n  transform: rotate(45deg);\n  background-color: #f27474;\n}\n.simplert__line--error-2 {\n  top: 35px;\n  right: 13px;\n  width: 47px;\n  -webkit-transform: rotate(-45deg);\n  transform: rotate(-45deg);\n  background-color: #f27474;\n}\n.simplert__footer {\n  padding: 1em 0;\n}\n.simplert__close, .simplert__confirm {\n  display: inline-block;\n  margin: 0 .5em;\n  padding: 10px 20px;\n  cursor: pointer;\n  text-align: center;\n  color: #fff;\n  border: none;\n  outline: none;\n  background-color: #068ac9;\n  -webkit-appearance: none;\n  -moz-appearance: none;\n}\n.simplert__close--radius, .simplert__confirm--radius {\n  -webkit-border-radius: 0.3em;\n  -moz-border-radius: 0.3em;\n  border-radius: 0.3em;\n}\n@keyframes zoomIn {\nfrom {\n    transform: scale3d(0.3, 0.3, 0.3);\n    opacity: 0;\n}\n50% {\n    opacity: 1;\n}\n}\n",""])},function(n,e,t){function o(n){for(var e=0;e<n.length;e++){var t=n[e],o=u[t.id];if(o){o.refs++;for(var s=0;s<o.parts.length;s++)o.parts[s](t.parts[s]);for(;s<t.parts.length;s++)o.parts.push(i(t.parts[s]));o.parts.length>t.parts.length&&(o.parts.length=t.parts.length)}else{for(var r=[],s=0;s<t.parts.length;s++)r.push(i(t.parts[s]));u[t.id]={id:t.id,refs:1,parts:r}}}}function s(){var n=document.createElement("style");return n.type="text/css",d.appendChild(n),n}function i(n){var e,t,o=document.querySelector('style[data-vue-ssr-id~="'+n.id+'"]');if(o){if(f)return _;o.parentNode.removeChild(o)}if(C){var i=m++;o=p||(p=s()),e=r.bind(null,o,i,!1),t=r.bind(null,o,i,!0)}else o=s(),e=l.bind(null,o),t=function(){o.parentNode.removeChild(o)};return e(n),function(o){if(o){if(o.css===n.css&&o.media===n.media&&o.sourceMap===n.sourceMap)return;e(n=o)}else t()}}function r(n,e,t,o){var s=t?"":o.css;if(n.styleSheet)n.styleSheet.cssText=v(e,s);else{var i=document.createTextNode(s),r=n.childNodes;r[e]&&n.removeChild(r[e]),r.length?n.insertBefore(i,r[e]):n.appendChild(i)}}function l(n,e){var t=e.css,o=e.media,s=e.sourceMap;if(o&&n.setAttribute("media",o),s&&(t+="\n/*# sourceURL="+s.sources[0]+" */",t+="\n/*# sourceMappingURL=data:application/json;base64,"+btoa(unescape(encodeURIComponent(JSON.stringify(s))))+" */"),n.styleSheet)n.styleSheet.cssText=t;else{for(;n.firstChild;)n.removeChild(n.firstChild);n.appendChild(document.createTextNode(t))}}var a="undefined"!=typeof document;if("undefined"!=typeof DEBUG&&DEBUG&&!a)throw new Error("vue-style-loader cannot be used in a non-browser environment. Use { target: 'node' } in your Webpack config to indicate a server-rendering environment.");var c=t(9),u={},d=a&&(document.head||document.getElementsByTagName("head")[0]),p=null,m=0,f=!1,_=function(){},C="undefined"!=typeof navigator&&/msie [6-9]\b/.test(navigator.userAgent.toLowerCase());n.exports=function(n,e,t){f=t;var s=c(n,e);return o(s),function(e){for(var t=[],i=0;i<s.length;i++){var r=s[i],l=u[r.id];l.refs--,t.push(l)}e?(s=c(n,e),o(s)):s=[];for(var i=0;i<t.length;i++){var l=t[i];if(0===l.refs){for(var a=0;a<l.parts.length;a++)l.parts[a]();delete u[l.id]}}}};var v=function(){var n=[];return function(e,t){return n[e]=t,n.filter(Boolean).join("\n")}}()},function(n,e,t){"use strict";n.exports=function(n,e){for(var t=[],o={},s=0;s<e.length;s++){var i=e[s],r=i[0],l=i[1],a=i[2],c=i[3],u={id:n+":"+s,css:l,media:a,sourceMap:c};o[r]?o[r].parts.push(u):t.push(o[r]={id:r,parts:[u]})}return t}},function(n,e){n.exports=function(n,e,t,o,s,i){var r,l=n=n||{},a=typeof n.default;"object"!==a&&"function"!==a||(r=n,l=n.default);var c="function"==typeof l?l.options:l;e&&(c.render=e.render,c.staticRenderFns=e.staticRenderFns,c._compiled=!0),t&&(c.functional=!0),s&&(c._scopeId=s);var u;if(i?(u=function(n){n=n||this.$vnode&&this.$vnode.ssrContext||this.parent&&this.parent.$vnode&&this.parent.$vnode.ssrContext,n||"undefined"==typeof __VUE_SSR_CONTEXT__||(n=__VUE_SSR_CONTEXT__),o&&o.call(this,n),n&&n._registeredComponents&&n._registeredComponents.add(i)},c._ssrRegister=u):o&&(u=o),u){var d=c.functional,p=d?c.render:c.beforeCreate;d?(c._injectStyles=u,c.render=function(n,e){return u.call(e),p(n,e)}):c.beforeCreate=p?[].concat(p,u):[u]}return{esModule:r,exports:l,options:c}}},function(n,e,t){"use strict";var o=function(){var n=this,e=n.$createElement,t=n._self._c||e;return t("div",{staticClass:"simplert",class:n.classSimplert,attrs:{role:"modal"},on:{click:n.closeOverlay}},[t("div",{staticClass:"simplert__content",class:n.classContent},[t("div",{staticClass:"simplert__header"},[n.showXclose?t("div",{staticClass:"simplert__x",on:{click:n.justCloseSimplert}},[n._v("╳")]):n._e(),n._v(" "),n.useIcon?t("div",["info"===n.type?t("div",{staticClass:"simplert__icon simplert__icon--info"},[t("div",{staticClass:"simplert__line simplert__line--info"}),n._v(" "),t("div",{staticClass:"simplert__line simplert__line--info-2"})]):n._e(),n._v(" "),"success"===n.type?t("div",{staticClass:"simplert__icon simplert__icon--success"},[t("div",{staticClass:"simplert__line simplert__line--success"}),n._v(" "),t("div",{staticClass:"simplert__line simplert__line--success-2"})]):n._e(),n._v(" "),"warning"===n.type?t("div",{staticClass:"simplert__icon simplert__icon--warning"},[t("div",{staticClass:"simplert__line simplert__line--warning"}),n._v(" "),t("div",{staticClass:"simplert__line simplert__line--warning-2"})]):n._e(),n._v(" "),"error"===n.type?t("div",{staticClass:"simplert__icon simplert__icon--error"},[t("div",{staticClass:"simplert__line simplert__line--error"}),n._v(" "),t("div",{staticClass:"simplert__line simplert__line--error-2"})]):n._e(),n._v(" "),""!==n.customIconUrl?t("div",{staticClass:"simplert__icon"},[t("img",{attrs:{src:n.customIconUrl}})]):n._e()]):n._e(),n._v(" "),t("b",{staticClass:"simplert__title"},[n._v(n._s(n.title))])]),n._v(" "),t("div",{staticClass:"simplert__body"},[t("div",{domProps:{innerHTML:n._s(n.message)}})]),n._v(" "),t("div",{staticClass:"simplert__footer"},[n.useConfirmBtn&&!n.hideAllButton?t("button",{class:n.classBtnConfirm,on:{click:n.whenConfirm}},[n._v("\n        "+n._s(n.customConfirmBtnText)+"\n      ")]):n._e(),n._v(" "),n.hideAllButton?n._e():t("button",{class:n.classBtnClose,on:{click:n.closeSimplert}},[n._v("\n        "+n._s(n.customCloseBtnText)+"\n      ")])])])])},s=[],i={render:o,staticRenderFns:s};e.a=i}])});
 //# sourceMappingURL=simplert.umd.js.map
+
+/***/ }),
+
+/***/ "?01a5":
+/*!*********************!*\
+  !*** got (ignored) ***!
+  \*********************/
+/***/ (() => {
+
+/* (ignored) */
 
 /***/ })
 

@@ -11,6 +11,12 @@ require('./bootstrap');
 
 window.Vue = require('vue').default;
 
+import VueResource from 'vue-resource'
+Vue.use(VueResource)
+Vue.http.options.root = 'http://localhost:8000/api/';
+
+
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
