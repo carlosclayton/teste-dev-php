@@ -202,7 +202,7 @@ class CarsController extends BasicCrudController
         return [
             'model' => 'required|max:255',
             'year' => 'required|integer',
-            'car_id' => 'required|exists:cars,id',
+            'brand_id' => 'required|exists:brands,id',
             'description' => 'nullable'
         ];
     }
@@ -215,7 +215,7 @@ class CarsController extends BasicCrudController
         return [
             'model' => 'required|max:255',
             'year' => 'required|integer',
-            'car_id' => 'required|exists:cars,id',
+            'brand_id' => 'required|exists:brands,id',
             'description' => 'nullable'
         ];
     }

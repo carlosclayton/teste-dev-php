@@ -26,6 +26,7 @@ class CarTransformer extends TransformerAbstract
             'id'         => $model->id,
             'model' => $model->model,
             'year' => $model->year,
+            'brand_id' => $model->brand_id,
             'description' => $model->description,
             'created_at' => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'),
             'updated_at' => Carbon::parse($model->updated_at)->format('d/m/Y H:i:s'),

@@ -48,8 +48,6 @@ Run the command bellow on Bash:
 $  php artisan migrate:refresh --seed
 ```  
 
-
-
 ##### 3.1  	Unit Tests
 Run the command bellow on Bash:
 
@@ -76,5 +74,21 @@ $  vendor/bin/phpunit --filter CarControllerTest --testdox
 ```  
 
 # SPA VUE 2
-### 2.	Third party package
+![Screenshot](spa-cars.png)
+### 4.	Third party package
 
+### 5.  	Tests
+
+##### 5.1  	Behavior test
+Run the command bellow on Bash:
+
+```
+$  php artisan migrate:refresh --seed
+```  
+
+##### 5.2  	Automation test
+Run the command bellow on Bash:
+
+```
+$  php artisan migrate:refresh --seed
+```  

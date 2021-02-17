@@ -16,6 +16,12 @@ use App\Validators\CarValidator;
  */
 class CarRepositoryEloquent extends BaseRepository implements CarRepository
 {
+
+    protected $fieldSearchable = [
+        'model'=>'like',
+        'year', "="
+    ];
+
     /**
      * Specify Model class name
      *

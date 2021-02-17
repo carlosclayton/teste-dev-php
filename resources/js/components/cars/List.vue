@@ -1,7 +1,13 @@
 <template>
     <div class="wrapper">
+        <simplert :useRadius="true"
+                  :useIcon="true"
+                  ref="simplert">
+        </simplert>
+
         <va-navibar></va-navibar>
         <va-slider></va-slider>
+
         <div id="content-wrap" class="content-wrapper">
             <section class="content-header">
                 <h1>
@@ -49,12 +55,66 @@
                                 </div>
                             </div>
                             <div class="box-body">
+                                <ValidationObserver v-slot="{ handleSubmit, invalid }">
+                                    <form @submit.prevent="handleSubmit(onSubmit)">
+                                        <div class="col-md-6">
+                                            <ValidationProvider name="by" rules="required"
+                                                                v-slot="{ errors, failed }">
+                                                <div
+                                                    :class="{'form-group': true,  'has-feedback': true, 'has-error': failed }">
+                                                    <label for="by">By:</label>
+                                                    <select v-model="by" id="by" name="by" class="form-control">
+                                                        <option value="id" selected="selected">ID</option>
+                                                        <option value="model">Model</option>
+                                                        <option value="year">Year</option>
+                                                    </select>
+                                                    <span class="help-block">{{ errors[0] }}</span>
+                                                </div>
+                                            </ValidationProvider>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <ValidationProvider name="Operator" rules="required"
+                                                                v-slot="{ errors, failed }">
+                                                <div
+                                                    :class="{'form-group': true,  'has-feedback': true, 'has-error': failed }">
+                                                    <label for="operator">Operator:</label>
+                                                    <select v-model="operator" id="operator" name="operator"
+                                                            class="form-control">
+                                                        <option value="=" selected="selected">Equal</option>
+                                                        <option value="like">Like</option>
+                                                    </select>
+                                                    <span class="help-block">{{ errors[0] }}</span>
+                                                </div>
+                                            </ValidationProvider>
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <ValidationProvider name="Keyword" rules="required|min:1|max:100"
+                                                                v-slot="{ errors, failed }">
+                                                <div
+                                                    :class="{'input-group': true,  'has-feedback': true, 'has-error': failed }">
+                                                    <input v-model="keyword" id="keyword" required="required"
+                                                           name="keyword" type="id"
+                                                           class="form-control" im-insert="true"
+                                                           placeholder="Type key word...">
+                                                    <span class="input-group-btn">
+                        <button type="submit" class="btn btn-block btn-primary">
+                            <i class="fa fa-search"></i> Search</button>
+                        </span>
+                                                </div>
+                                                <span class="help-block text-red">{{ errors[0] }}</span>
+                                            </ValidationProvider>
+                                        </div>
+                                    </form>
+                                </ValidationObserver>
+
                             </div>
                         </div>
                         <div class="box box-primary">
                             <div class="box-header with-border">
                                 <span class="glyphicon glyphicon-th-list"></span>
-                                <h3 class="box-title">Brands</h3>
+                                <h3 class="box-title">Cars</h3>
 
                                 <div class="box-tools pull-right">
                                     <button type="button" class="btn btn-box-tool" data-widget="collapse"
@@ -75,6 +135,20 @@
                                     @onUpdate="dtUpdateSort"
                                     trackBy="id"
                                 >
+                                    <template v-slot:actions="props">
+                                        <button type="button" class="btn btn-warning"
+                                                @click="dtEditClick(props);">
+                                            <i class="glyphicon glyphicon-edit"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-info"
+                                                @click="dtShowClick(props);">
+                                            <i class="fa fa-fw fa-reorder"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-danger"
+                                                @click="dtDestroyClick(props);">
+                                            <i class="glyphicon glyphicon-trash"></i>
+                                        </button>
+                                    </template>
                                     <Pagination
                                         slot="pagination"
                                         :page="currentPage"
@@ -93,19 +167,25 @@
                                             @onUpdate="updateItemsPerPage"
                                         />
                                     </div>
+
                                     <Spinner slot="spinner"/>
+
+
                                 </DataTable>
 
                             </div>
                         </div>
                     </div>
                 </div>
-
-
+                <Add></Add>
+                <Edit :car="car"></Edit>
+                <Show :car="car"></Show>
             </section>
         </div>
+
         <va-footer></va-footer>
     </div>
+
 
 </template>
 
@@ -115,7 +195,7 @@ import Vue from 'vue';
 import VAFooter from '../Footer'
 import VANaviBar from '../NavBar'
 import VASlider from '../Slider'
-import Simplert from 'vue2-simplert';
+
 
 import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/vue-loading.css';
@@ -128,12 +208,32 @@ import CarService from '../../services/CarService'
 
 import {extend} from 'vee-validate';
 
+import * as rules from 'vee-validate/dist/rules';
+import {messages} from 'vee-validate/dist/locale/pt_BR.json';
+
 import {ValidationProvider, ValidationObserver} from 'vee-validate';
 
+Object.keys(rules).forEach(rule => {
+    extend(rule, {
+        ...rules[rule], // copies rule configuration
+        message: messages[rule] // assign message
+    });
+});
 
+
+import Add from '../../components/cars/Add'
+import Edit from '../../components/cars/Edit'
+import Show from '../../components/cars/Show'
+import eventBus from '../../services/eventBus'
+
+import Simplert from 'vue2-simplert';
 export default {
     data() {
         return {
+            car: {},
+            by: '',
+            operator: '',
+            keyword: '',
             fullPage: true,
             cars: [],
             statusForm: 'New',
@@ -192,20 +292,100 @@ export default {
     },
     mounted() {
         console.log('Car component monted')
+
+        eventBus.$on('getAll', () => {
+            this.getAll()
+        })
+
         document.body.className = 'skin-blue sidebar-mini';
         this.getAll();
     },
     methods: {
+        dtEditClick(props) {
+            console.log('Props:', props)
+            this.car = {
+                'id': props.rowData.id,
+                'model': props.rowData.model,
+                'year': props.rowData.year,
+                'brand_id': props.rowData.brand_id,
+                'description': props.rowData.description
+            }
+            $('#modal-edit-car').modal('show')
+        },
+        dtShowClick(props) {
+            console.log('Props:', props)
+            this.car = {
+                'id': props.rowData.id,
+                'model': props.rowData.model,
+                'year': props.rowData.year,
+                'brand_id': props.rowData.brand_id,
+                'description': props.rowData.description
+            }
+            $('#modal-show-car').modal('show')
+        },
+        dtDestroyClick(props) {
+            this.id = props.rowData.id;
 
+            let obj = {
+                title: 'Remove ' + props.rowData.model ,
+                message: 'Are you sure?',
+                type: 'error',
+                useConfirmBtn: true,
+                customConfirmBtnText: 'Yes',
+                customCloseBtnText: 'No',
+                customConfirmBtnClass: 'btn btn-primary btn-block margin-bottom btn-lg',
+                customCloseBtnClass: 'btn btn-danger btn-block margin-bottom btn-lg',
+                onConfirm: this.destroy
+            }
+            this.$refs.simplert.openSimplert(obj)
+
+        },
+        destroy() {
+            CarService.destroy(this.id)
+                .then((response) => {
+                    this.getAll()
+                    Vue.$toast.open({
+                        type: 'success',
+                        message: response.body.message,
+                        position: 'bottom',
+                        duration: 5000
+                    })
+                })
+                .catch((response) => {
+                    Vue.$toast.open({
+                        type: 'error',
+                        message: response.body.message,
+                        position: 'bottom',
+                        duration: 5000
+                    })
+                })
+
+        },
+        onSubmit() {
+            console.log('Searching...')
+            this.isLoading = true
+            CarService.search(this.by, this.operator, this.keyword)
+                .then((response) => {
+                    console.log('Cars search: ', response)
+                    this.cars = response.body.data
+                    this.currentPage = response.body.meta.pagination.current_page
+                    this.totalItems = response.body.meta.pagination.total
+                    this.itemsPerPage = response.body.meta.pagination.per_page
+                    this.isLoading = false
+                })
+                .catch((error) => {
+                    console.log('ERROR: ', error)
+                })
+        },
         getAll() {
             this.isLoading = true
             CarService.all(this.currentPage, this.itemsPerPage, this.sortField, this.sort)
                 .then((response) => {
-                    console.log('Cars: ', response)
                     this.cars = response.body.data
-                    this.currentPage = response.body.data.meta.pagination.current_page
-                    this.totalItems = response.body.data.meta.pagination.total
-                    this.itemsPerPage = response.body.data.meta.pagination.per_page
+                    console.log('Cars: ', response)
+                    this.currentPage = response.body.meta.pagination.current_page
+                    this.totalItems = response.body.meta.pagination.total
+                    this.itemsPerPage = response.body.meta.pagination.per_page
                     this.isLoading = false
                 })
                 .catch((error) => {
@@ -220,9 +400,9 @@ export default {
                 .then((response) => {
                     console.log('Cars: ', response)
                     this.cars = response.body.data
-                    this.currentPage = response.body.data.meta.pagination.current_page
-                    this.totalItems = response.body.data.meta.pagination.total
-                    this.itemsPerPage = response.body.data.meta.pagination.per_page
+                    this.currentPage = response.body.meta.pagination.current_page
+                    this.totalItems = response.body.meta.pagination.total
+                    this.itemsPerPage = response.body.meta.pagination.per_page
                     this.isLoading = false
                 })
                 .catch((error) => {
@@ -237,9 +417,9 @@ export default {
                 .then((response) => {
                     console.log('Cars: ', response)
                     this.cars = response.body.data
-                    this.currentPage = response.body.data.meta.pagination.current_page
-                    this.totalItems = response.body.data.meta.pagination.total
-                    this.itemsPerPage = response.body.data.meta.pagination.per_page
+                    this.currentPage = response.body.meta.pagination.current_page
+                    this.totalItems = response.body.meta.pagination.total
+                    this.itemsPerPage = response.body.meta.pagination.per_page
                     this.isLoading = false
                 })
                 .catch((error) => {
@@ -253,9 +433,9 @@ export default {
                 .then((response) => {
                     console.log('Cars: ', response)
                     this.cars = response.body.data
-                    this.currentPage = response.body.data.meta.pagination.current_page
-                    this.totalItems = response.body.data.meta.pagination.total
-                    this.itemsPerPage = response.body.data.meta.pagination.per_page
+                    this.currentPage = response.body.meta.pagination.current_page
+                    this.totalItems = response.body.meta.pagination.total
+                    this.itemsPerPage = response.body.meta.pagination.per_page
                     this.isLoading = false
                 })
                 .catch((error) => {
@@ -272,7 +452,6 @@ export default {
         onCancel() {
             console.log('User cancelled the loader.')
         },
-
     },
     components: {
         Simplert,
@@ -285,7 +464,11 @@ export default {
         Pagination,
         Spinner,
         ValidationProvider,
-        ValidationObserver
+        ValidationObserver,
+        Add,
+        Edit,
+        Show
+
 
     }
 }
