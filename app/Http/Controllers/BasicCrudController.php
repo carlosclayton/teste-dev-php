@@ -4,6 +4,20 @@
 namespace App\Http\Controllers;
 
 
+/**
+ * @OA\Info(
+ *      version="1.0.0",
+ *      title="API RESTFUL Laravel 8",
+ *      description="L5 Swagger OpenApi description",
+ *      @OA\Contact(
+ *          email="carlos.clayton@gmail.com"
+ *      ),
+ *     @OA\License(
+ *         name="Apache 2.0",
+ *         url="http://www.apache.org/licenses/LICENSE-2.0.html"
+ *     )
+ * )
+ */
 
 use Illuminate\Http\Request;
 

@@ -19,6 +19,140 @@ use App\Validators\BrandValidator;
  */
 class BrandsController extends BasicCrudController
 {
+
+    /**
+     * @OA\Get(
+     *     tags={"Brands"},
+     *     path="/api/brands",
+     *     summary="List of brands",
+     *     description="Return a list of brands",
+     *     @OA\Response(response="200", description="An json"),
+     *      security={
+     *           {"apiKey": {}}
+     *       }
+     * )
+     */
+
+    /**
+     * @OA\Post(
+     *      tags={"Brands"},
+     *      path="/api/brands",
+     *      summary="Store a brand",
+     *      description="Return message",
+     *      @OA\Parameter(
+     *          name="name",
+     *          description="Name field",
+     *          required=true,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *      @OA\Parameter(
+     *          name="description",
+     *          description="Description",
+     *          required=false,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *     @OA\Response(response="200", description="Store brand"),
+     *      security={
+     *           {"apiKey": {}}
+     *      }
+     * )
+     */
+
+    /**
+     * @OA\Get(
+     *     tags={"Brands"},
+     *     path="/api/brands/{id}",
+     *     operationId="getBrandById",
+     *     @OA\Parameter(
+     *          name ="id",
+     *          in = "path",
+     *          description = "ID of prooduct to return",
+     *          required = true,
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *     ),
+     *     summary="Show brand",
+     *     description="Return a brand",
+     *     @OA\Response(response="200", description="A json"),
+     *     security={
+     *           {"apiKey": {}}
+     *     }
+     * )
+     */
+
+
+    /**
+     * @OA\Put(
+     *      tags={"Brands"},
+     *      path="/api/brands/{id}",
+     *      summary="Update a brand",
+     *      description="Update a brand",
+     *      operationId="getBrandById",
+     *      @OA\Parameter(
+     *          name ="id",
+     *          in = "path",
+     *          description = "ID of brand to return",
+     *          required = true,
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Parameter(
+     *          name="name",
+     *          description="Name field",
+     *          required=true,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *      @OA\Parameter(
+     *          name="description",
+     *          description="Description",
+     *          required=false,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *     @OA\Response(response="200", description="A json"),
+     *      security={
+     *           {"apiKey": {}}
+     *      }
+     * )
+     */
+
+    /**
+     * @OA\Delete(
+     *     tags={"Brands"},
+     *     path="/api/brands/{id}",
+     *     operationId="getBrandById",
+     *     @OA\Parameter(
+     *          name ="id",
+     *          in = "path",
+     *          description = "ID of brand to return",
+     *          required = true,
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *     ),
+     *     summary="Delete a brand",
+     *     description="Delete a brand",
+     *     @OA\Response(response="200", description="An json"),
+     *     security={
+     *           {"apiKey": {}}
+     *     }
+     * )
+     */
+
+
     /**
      * @var BrandRepository
      */
