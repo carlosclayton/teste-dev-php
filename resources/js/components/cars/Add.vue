@@ -15,8 +15,8 @@
                             <ValidationProvider name="Model" rules="required|min:3|max:100"
                                                 v-slot="{ errors, failed }">
                                 <div :class="{'form-group': true,  'has-feedback': true, 'has-error': failed }">
-                                    <label for="">Model</label>
-                                    <input v-model="model" type="text" class="form-control" placeholder="Type Model">
+                                    <label for="model">Model</label>
+                                    <input v-model="model" name="model" id="model" type="text" class="form-control" placeholder="Type Model">
 
                                     <span class="help-block">{{ errors[0] }}</span>
                                 </div>
@@ -27,7 +27,7 @@
                                                 v-slot="{ errors, failed }">
                                 <div :class="{'form-group': true,  'has-feedback': true, 'has-error': failed }">
                                     <label for="year">Year</label>
-                                    <input v-model="year" type="text" class="form-control" placeholder="Type Year">
+                                    <input v-model="year" name="year" id="year" type="text" class="form-control" placeholder="Type Year">
 
                                     <span class="help-block">{{ errors[0] }}</span>
                                 </div>

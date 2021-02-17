@@ -102,12 +102,6 @@ $  npm run dev
 Run the command bellow on Bash:
 
 ```
-$  php artisan migrate:refresh --seed
+$  php artisan dusk --filter CarBrowserTest --testdox
 ```  
 
-##### 6.2  	Automation test
-Run the command bellow on Bash:
-
-```
-$  php artisan migrate:refresh --seed
-```  

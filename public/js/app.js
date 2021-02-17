@@ -50628,7 +50628,7 @@ var render = function() {
                                             [
                                               _c(
                                                 "label",
-                                                { attrs: { for: "" } },
+                                                { attrs: { for: "model" } },
                                                 [_vm._v("Model")]
                                               ),
                                               _vm._v(" "),
@@ -50643,6 +50643,8 @@ var render = function() {
                                                 ],
                                                 staticClass: "form-control",
                                                 attrs: {
+                                                  name: "model",
+                                                  id: "model",
                                                   type: "text",
                                                   placeholder: "Type Model"
                                                 },
@@ -50716,6 +50718,8 @@ var render = function() {
                                                 ],
                                                 staticClass: "form-control",
                                                 attrs: {
+                                                  name: "year",
+                                                  id: "year",
                                                   type: "text",
                                                   placeholder: "Type Year"
                                                 },
@@ -51894,7 +51898,7 @@ var render = function() {
                                       "button",
                                       {
                                         staticClass: "btn btn-warning",
-                                        attrs: { type: "button" },
+                                        attrs: { type: "button", id: "edit" },
                                         on: {
                                           click: function($event) {
                                             return _vm.dtEditClick(props)
@@ -51913,7 +51917,7 @@ var render = function() {
                                       "button",
                                       {
                                         staticClass: "btn btn-info",
-                                        attrs: { type: "button" },
+                                        attrs: { type: "button", id: "show" },
                                         on: {
                                           click: function($event) {
                                             return _vm.dtShowClick(props)
@@ -51931,7 +51935,10 @@ var render = function() {
                                       "button",
                                       {
                                         staticClass: "btn btn-danger",
-                                        attrs: { type: "button" },
+                                        attrs: {
+                                          type: "button",
+                                          id: "destroy"
+                                        },
                                         on: {
                                           click: function($event) {
                                             return _vm.dtDestroyClick(props)
@@ -52054,6 +52061,7 @@ var staticRenderFns = [
         staticClass: "btn btn-primary btn-block margin-bottom btn-lg",
         attrs: {
           type: "button",
+          id: "btn_add",
           "data-toggle": "modal",
           "data-target": "#modal-default"
         }

@@ -23,7 +23,7 @@
             <section class="content">
                 <div class="row">
                     <div class="col-md-3">
-                        <button type="button" class="btn btn-primary btn-block margin-bottom btn-lg" data-toggle="modal"
+                        <button type="button" id="btn_add" class="btn btn-primary btn-block margin-bottom btn-lg" data-toggle="modal"
                                 data-target="#modal-default">
                             <span class="glyphicon glyphicon-plus"></span> Add
                         </button>
@@ -136,15 +136,15 @@
                                     trackBy="id"
                                 >
                                     <template v-slot:actions="props">
-                                        <button type="button" class="btn btn-warning"
+                                        <button type="button" id="edit" class="btn btn-warning"
                                                 @click="dtEditClick(props);">
                                             <i class="glyphicon glyphicon-edit"></i>
                                         </button>
-                                        <button type="button" class="btn btn-info"
+                                        <button type="button" id="show" class="btn btn-info"
                                                 @click="dtShowClick(props);">
                                             <i class="fa fa-fw fa-reorder"></i>
                                         </button>
-                                        <button type="button" class="btn btn-danger"
+                                        <button type="button" id="destroy" class="btn btn-danger"
                                                 @click="dtDestroyClick(props);">
                                             <i class="glyphicon glyphicon-trash"></i>
                                         </button>
